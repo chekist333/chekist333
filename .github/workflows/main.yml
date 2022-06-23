@@ -6,10 +6,7 @@ jobs:
   to_gitlab:
     runs-on: ubuntu-latest
     steps:
-      - name: Install SSH Key
-        uses: shimataro/ssh-key-action@v2
-        with:
-          key: ${{ secrets.GITLAB_SSH_PRIVATE_KEY }} 
+      
                                               # <-- must use actions/checkout before mirroring!
       - uses: actions/checkout@main
         with:
