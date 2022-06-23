@@ -5,17 +5,21 @@ on: [push, delete]
 jobs:
   to_gitlab:
     runs-on: ubuntu-latest
-    steps:                                              # <-- must use actions/checkout before mirroring!
+    steps:
+      - name: Install SSH Key
+        uses: shimataro/ssh-key-action@v2
+        with:
+          key: ${{ secrets.GITLAB_SSH_PRIVATE_KEY }} 
+                                              # <-- must use actions/checkout before mirroring!
       - uses: actions/checkout@main
         with:
           fetch-depth: 0
       - uses: pixta-dev/repository-mirroring-action@v1
         with:
-          ssh_private_key:                              # <-- use 'secrets' to pass credential information.
-            ${{ secrets.GITLAB_SSH_PRIVATE_KEY }}
           target_repo_url:
             git@github.com:chekist333/chekist333.git
-          
+          ssh_private_key:                              # <-- use 'secrets' to pass credential information.
+            ${{ secrets.GITLAB_SSH_PRIVATE_KEY }}
 
 
   
