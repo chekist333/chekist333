@@ -21,5 +21,4 @@ jobs:
           ssh_private_key:                              # <-- use 'secrets' to pass credential information.
             ${{ secrets.GITLAB_SSH_PRIVATE_KEY }}
 
-
   
