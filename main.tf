@@ -31,12 +31,12 @@ provider "aws" {
 
 resource "yandex_compute_instance" "lipatnikov6" {
   name        = "${var.host_name}"
-  zone        = "ru-central1-a"
   platform_id = "standard-v1"
 
   resources {
     cores  = 4
     memory = 4
+    core-fraction = 5
   }
 
   boot_disk {
